@@ -109,3 +109,5 @@ client_secret.json
 *.parquet
 
 *.json
+*.xls
+*.xlsx
