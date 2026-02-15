@@ -106,8 +106,6 @@ client_secret.json
 # Archivos del sistema
 .git/
 .gitattributes 
-nifty-might-269005-cd303aaaa33f.json
-xlsx/
-download/
 *.parquet
-e-list-247810-197b012ab0f7.json
+
+*.json
