@@ -1,4 +1,5 @@
 import pandas as pd
+import pytz
 import os
 from datetime import datetime
 from utils.helper import get_months_until_now_from_feb
@@ -35,7 +36,7 @@ def read_data_c1_cgroup():
     df['Celular de la madre'] = df['Celular de la madre'].fillna(0).astype(int)
     df['Motivo referencia'] = df['Motivo referencia'].fillna("Sin Referencia")
     df= df.drop(DROP_COLS_CVD, axis=1)
-    df["update"] = datetime.now()
+    df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
 def read_data_c1_cdetalle():
@@ -63,7 +64,7 @@ def read_data_c1_cdetalle():
     df['Número de Documento de Niño'] = df['Número de Documento de Niño'].astype(str)
     df['Año'] = df['Año'].astype(str)
     df['Celular de la Madre'] = df['Celular de la Madre'].astype(str)
-    df["update"] = datetime.now()
+    df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
 
@@ -88,7 +89,7 @@ def read_data_c1_ggroup():
             df['Año'] = df['Fecha Mínima de Inicio de Intervención'].str[:4]
         except FileNotFoundError:
             print(f"⚠️ Archivo no encontrado: {file_path}")
-    df["update"] = datetime.now()
+    df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
 def read_data_c1_gdetalle():
@@ -109,7 +110,7 @@ def read_data_c1_gdetalle():
             df["Centro Poblado"] = df["Centro Poblado"].replace({False:"OTRO"})
         except FileNotFoundError:
             print(f"⚠️ Archivo no encontrado: {file_path}")
-    df["update"] = datetime.now()
+    df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
 
