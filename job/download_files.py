@@ -71,7 +71,7 @@ def download_files_c1(mes):
         file_name = f"Detalle_nino_{mes}.xls"
         save_path = os.path.join(download_folder, file_name)
         print(f"⬇️ Iniciando descarga... Esperando archivo: {save_path}")
-        with page.expect_download(timeout=3000) as download_info:
+        with page.expect_download(timeout=120000) as download_info:
             page.locator("xpath=//html/body/div[1]/div/div[2]/div/div/header/button[2]").click()
                                 #/html/body/div[1]/div/div[2]/div/div/header/button[2]
         download = download_info.value
@@ -97,7 +97,7 @@ def download_files_c1(mes):
         file_name_vd = f"Reporte_actividades_{mes}.xls"
         save_path_vd = os.path.join(download_folder, file_name_vd)
         print(f"⬇️ Iniciando descarga... Esperando archivo: {save_path_vd}")
-        with page.expect_download(timeout=3000) as download_info:
+        with page.expect_download(timeout=120000) as download_info:
             page.locator("xpath=//html/body/div[1]/div/div[2]/div/div/header/button[2]").click()
                                 #/html/body/div[1]/div/div[2]/div/div/header/button[2]
         download = download_info.value
@@ -123,7 +123,7 @@ def download_files_c1(mes):
         file_name_vd = f"Detalle_madre_{mes}.xls"
         save_path_vd = os.path.join(download_folder, file_name_vd)
         print(f"⬇️ Iniciando descarga... Esperando archivo: {save_path_vd}")
-        with page.expect_download(timeout=3000) as download_info:
+        with page.expect_download(timeout=120000) as download_info:
             page.locator("xpath=//html/body/div[1]/div/div[2]/div/div/header/button[2]").click()
                                 #/html/body/div[1]/div/div[2]/div/div/header/button[2]
         download = download_info.value
@@ -149,7 +149,7 @@ def download_files_c1(mes):
         file_name_vd = f"Reporte_actividades_madres_{mes}.xls"
         save_path_vd = os.path.join(download_folder, file_name_vd)
         print(f"⬇️ Iniciando descarga... Esperando archivo: {save_path_vd}")
-        with page.expect_download(timeout=3000) as download_info:
+        with page.expect_download(timeout=120000) as download_info:
             page.locator("xpath=//html/body/div[1]/div/div[2]/div/div/header/button[2]").click()
                                 #/html/body/div[1]/div/div[2]/div/div/header/button[2]
         download = download_info.value
