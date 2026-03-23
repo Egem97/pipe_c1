@@ -28,3 +28,4 @@ def pipeline_data_c1():
     upload_to_gcs(BUCKET, "gestantes.parquet", "GESTANTE_VISITAS_DOMICILIARIAS_DATA.parquet")
     upload_to_gcs(BUCKET, "detalle_gestantes.parquet", "GESTANTES_VISITAS_DOMICILIARIAS_DATA.parquet")
     print(f"Fin de Transform de archivos del mes {month_text}")
+    ##oww
