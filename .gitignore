@@ -112,3 +112,8 @@ client_secret.json
 *.xls
 *.xlsx
 pruebas.py
+
+
+
+# Ignorar todos los archivos en data/download
+data/download/*
