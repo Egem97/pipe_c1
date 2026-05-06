@@ -53,5 +53,6 @@ def pipeline_seg():
         "Edad":"Edad_create_sd","Número de Documento del niño":"Número de Documento"
     })
     dataframe_general["Mes"] = dataframe_general["Mes"].apply(lambda x: mes_short(x))
+    os.makedirs("./data/base", exist_ok=True)
     dataframe_general.to_parquet("./data/base/SEGUIMIENTO_NOMINAL_.parquet")
     upload_to_gcs(BUCKET, "./data/base/SEGUIMIENTO_NOMINAL_.parquet", "SEGUIMIENTO_NOMINAL_.parquet")
