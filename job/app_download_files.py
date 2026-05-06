@@ -34,10 +34,26 @@ def download_files_vd(mes):
 
         print("🔐 Navegando a página de login...")
         page.goto(os.getenv("WEB"))
-        
+        page.wait_for_load_state("networkidle", timeout=60000)
+
         print("Llenando formulario de login...")
 
-        page.fill('xpath=//html/body/div[1]/main/div[1]/form/div[1]/input', os.getenv("USER"))
+        try:
+            page.wait_for_selector(
+                'xpath=//html/body/div[1]/main/div[1]/form/div[1]/input',
+                timeout=60000,
+            )
+        except Exception:
+            base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            debug_dir = os.path.join(base_path, "data", "debug")
+            os.makedirs(debug_dir, exist_ok=True)
+            page.screenshot(path=os.path.join(debug_dir, "login_timeout.png"), full_page=True)
+            with open(os.path.join(debug_dir, "login_timeout.html"), "w", encoding="utf-8") as f:
+                f.write(page.content())
+            print(f"Login form no apareció. URL actual: {page.url} | Title: {page.title()}")
+            raise
+
+        page.fill('xpath=//html/body/div[1]/main/div[1]/form/div[1]/input', os.getenv("APP_USER") or os.getenv("USER"))
         page.fill('xpath=//html/body/div[1]/main/div[1]/form/div[2]/input', os.getenv("PASSWORD"))
         print("Haciendo click en login...")
         page.click('xpath=//html/body/div[1]/main/div[1]/form/div[3]/button')
