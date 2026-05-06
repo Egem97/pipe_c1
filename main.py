@@ -1,6 +1,7 @@
 import asyncio
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from job.pipeline_ingest import pipeline_data_c1
+from job.pipeline_seg import pipeline_seg
 
 
 import pytz
@@ -10,7 +11,7 @@ async def main():
     
     # Ejecutar cada 30 minutos desde las 8:00 AM hasta las 22:30 PM (10:30 PM)
     scheduler.add_job(pipeline_data_c1, 'cron', hour='7-22', minute='0,30')
-    #scheduler.add_job(pipeline_data_c1, 'cron', hour='22', minute='45')
+    scheduler.add_job(pipeline_seg, 'cron', hour='*/2', minute=0)
     
     scheduler.start()
     print("Scheduler iniciado. Ejecutando jobs.")

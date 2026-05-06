@@ -1,5 +1,6 @@
 import pandas as pd
 from job.download_files import download_files_c1
+from job.app_download_files import download_files_vd
 from utils.helper import *
 from utils.transform import *
 from dotenv import load_dotenv
@@ -12,7 +13,8 @@ def pipeline_data_c1():
     month = month_actual_peru()
     month_text = mes_short(month)
     print(f"Inicio de Download de archivos del mes {month_text}")
-    download_files_c1(mes = month_text)
+    #download_files_c1(mes = month_text)
+    download_files_vd(mes = month_text)
     print(f"Fin de Download de archivos del mes {month_text}")
     print(f"Inicio de Transform de archivos del mes {month_text}")
     df_cgroup = read_data_c1_cgroup()
