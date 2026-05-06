@@ -34,14 +34,14 @@ def download_files_vd(mes):
 
         print("🔐 Navegando a página de login...")
         page.goto(os.getenv("WEB"))
-        page.wait_for_load_state("networkidle", timeout=60000)
+        page.wait_for_load_state("networkidle", timeout=100000)
 
         print("Llenando formulario de login...")
 
         try:
             page.wait_for_selector(
                 'xpath=//html/body/div[1]/main/div[1]/form/div[1]/input',
-                timeout=60000,
+                timeout=100000,
             )
         except Exception:
             base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
