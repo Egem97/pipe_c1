@@ -37,10 +37,10 @@ def download_files_vd(mes):
         
         print("Llenando formulario de login...")
 
-        page.fill('xpath=//input[@name="login"]', os.getenv("USER"))
-        page.fill('xpath=//input[@name="password"]', os.getenv("PASSWORD"))
+        page.fill('xpath=//html/body/div[1]/main/div[1]/form/div[1]/input', os.getenv("USER"))
+        page.fill('xpath=//html/body/div[1]/main/div[1]/form/div[2]/input"]', os.getenv("PASSWORD"))
         print("Haciendo click en login...")
-        page.click('xpath=//html/body/div/main/div/form/div[3]/button')
+        page.click('xpath=//html/body/div[1]/main/div[1]/form/div[3]/button')
 
         print("⏳ Esperando que cargue la página...")
         NAVEGADOR_DESCARGAS = '//html/body/header/nav/div[3]/button[9]/span'
@@ -157,4 +157,3 @@ def download_files_vd(mes):
         print(f"✅ Descarga detectada: {download.suggested_filename}")
         download.save_as(save_path_vd)
         print(f"💾 Archivo guardado exitosamente en: {save_path_vd}")
-download_files_vd("May")
