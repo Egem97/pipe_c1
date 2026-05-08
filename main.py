@@ -2,7 +2,9 @@ import asyncio
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from job.pipeline_ingest import pipeline_data_c1
 from job.pipeline_seg import pipeline_seg
-
+from apscheduler.triggers.combining import AndTrigger
+from apscheduler.triggers.interval import IntervalTrigger
+from apscheduler.triggers.cron import CronTrigger
 
 import pytz
 

@@ -29,13 +29,15 @@ def read_data_c1_cgroup():
         'Centro Poblado','Fecha Mínima de Inicio de Intervención','Fecha Máxima de Intervención','Total de ST Realizados','Total de ST Válidos',
         'Total de ST Válidos WEB','Total de ST Válidos MOVIL',
     ]
-    df['Mes'] = df['Fecha Mínima de Inicio de Intervención'].str[5:7]
-    df['Año'] = df['Fecha Mínima de Inicio de Intervención'].str[:4]
+    df['Mes'] = df['Fecha Mínima de Inicio de Intervención'].astype(str).str[5:7]
+    df['Año'] = df['Fecha Mínima de Inicio de Intervención'].astype(str).str[:4]
     df['Mes'] = df['Mes'].astype(int)
     df['Año'] = df['Año'].astype(int)
     df['Celular de la madre'] = df['Celular de la madre'].fillna(0).astype(int)
     df['Motivo referencia'] = df['Motivo referencia'].fillna("Sin Referencia")
     df= df.drop(DROP_COLS_CVD, axis=1)
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].astype(str)
     df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
@@ -64,6 +66,8 @@ def read_data_c1_cdetalle():
     df['Número de Documento de Niño'] = df['Número de Documento de Niño'].astype(str)
     df['Año'] = df['Año'].astype(str)
     df['Celular de la Madre'] = df['Celular de la Madre'].astype(str)
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].astype(str)
     df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
@@ -85,10 +89,12 @@ def read_data_c1_ggroup():
             df_gestantes = df_gestantes.drop_duplicates(subset='Número de Documento', keep='first')
             df = df._append(df_gestantes, ignore_index=True)
             df["Número de Documento"] = df["Número de Documento"].str.strip()
-            df['Mes'] = df['Fecha Mínima de Inicio de Intervención'].str[5:7]
-            df['Año'] = df['Fecha Mínima de Inicio de Intervención'].str[:4]
+            df['Mes'] = df['Fecha Mínima de Inicio de Intervención'].astype(str).str[5:7]
+            df['Año'] = df['Fecha Mínima de Inicio de Intervención'].astype(str).str[:4]
         except FileNotFoundError:
             print(f"⚠️ Archivo no encontrado: {file_path}")
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].astype(str)
     df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
@@ -110,6 +116,8 @@ def read_data_c1_gdetalle():
             df["Centro Poblado"] = df["Centro Poblado"].replace({False:"OTRO"})
         except FileNotFoundError:
             print(f"⚠️ Archivo no encontrado: {file_path}")
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].astype(str)
     df["update"] = datetime.now(pytz.timezone('America/Lima'))
     return df
 
